@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Grab Tabs",
+    "description": "Save and restore selected tabs",
+    "version": "1.0",
+    "permissions": ["activeTab", "storage", "notifications", "clipboardWrite", "tabs", "scripting"],
+    "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+        "default_icon": "icon.png",
+        "default_title": "Grab Tabs",
+        "default_popup": "popup.html"
+    }
+  }
