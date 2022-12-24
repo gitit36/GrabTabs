@@ -5,17 +5,18 @@ var button = document.getElementById('grab-tabs-button');
 button.addEventListener('click', function() {
   // Get the selected tabs
   chrome.tabs.query({highlighted: true, currentWindow: true}, function(tabs) {
-    var urls = [];
+    var tabData = [];
     for (var i = 0; i < tabs.length; i++) {
-      urls.push(tabs[i].url);
+      tabData.push(tabs[i].title + '\n' + tabs[i].url);
     }
-    // Join the URLs into a single string
-    var urlString = urls.join('\n');
-    // Copy the URL string to the clipboard
-    navigator.clipboard.writeText(urlString).then(function() {
-      console.log('URLs copied to clipboard');
+    // Join the tab data into a single string
+    var tabDataString = tabData.join('\n\n');
+    // Copy the tab data string to the clipboard
+    navigator.clipboard.writeText(tabDataString).then(function() {
+      console.log('Tab data copied to clipboard');
     }, function(err) {
-      console.error('Error copying URLs to clipboard: ' + err);
+      console.error('Error copying tab data to clipboard: ' + err);
     });
   });
 });
+
